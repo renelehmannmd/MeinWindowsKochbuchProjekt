@@ -239,12 +239,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\BrushValueConverter.cs" />
-    <Compile Include="Datenmodell\Bilder.cs" />
+    <Compile Include="Datenmodell\Bild.cs" />
     <Compile Include="Datenmodell\LebensmittelKategorie.cs" />
     <Compile Include="Extensions\ImportLebensmittel.cs" />
     <Compile Include="Migrations\20170712155111_M0.cs" />
     <Compile Include="Migrations\20170712155111_M0.designer.cs">
       <DependentUpon>20170712155111_M0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20170719172334_M1.cs" />
+    <Compile Include="Migrations\20170719172334_M1.designer.cs">
+      <DependentUpon>20170719172334_M1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\RezeptDataContextModelSnapshot.cs" />
     <Compile Include="MyRelayCommand\RelayCommand.cs" />

@@ -16,8 +16,9 @@ namespace MeinWindowsKochbuchProjekt.Datenmodell
         public DbSet<Lebensmittel> Lebensmittels { get; set; }
         public DbSet<Naehrwerttabelle> Naehrwerttabellen { get; set; }
         public DbSet<LebensmittelKategorie> LebensmittelKategorien { get; set; }
+        public DbSet<Bild> Bilder { get; set; }
 
-        string path = "myCookbook.db";
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\myCookbook.db";
 
         public RezeptDataContext() : base()
         {

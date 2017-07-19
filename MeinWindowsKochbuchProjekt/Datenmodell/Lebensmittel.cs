@@ -35,5 +35,6 @@ namespace MeinWindowsKochbuchProjekt.Datenmodell
         public Naehrwerttabelle Naehrwerttabelle { get; set; }
         public LebensmittelKategorie LebensmittelKategorie { get; set; }
 
+
     }
 }

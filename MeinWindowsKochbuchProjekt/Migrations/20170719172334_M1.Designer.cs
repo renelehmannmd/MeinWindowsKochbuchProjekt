@@ -8,9 +8,10 @@ using MeinWindowsKochbuchProjekt.Datenmodell;
 namespace MeinWindowsKochbuchProjekt.Migrations
 {
     [DbContext(typeof(RezeptDataContext))]
-    partial class RezeptDataContextModelSnapshot : ModelSnapshot
+    [Migration("20170719172334_M1")]
+    partial class M1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
