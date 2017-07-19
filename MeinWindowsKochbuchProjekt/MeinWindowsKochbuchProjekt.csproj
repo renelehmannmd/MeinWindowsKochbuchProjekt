@@ -239,6 +239,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\BrushValueConverter.cs" />
+    <Compile Include="Datenmodell\Bilder.cs" />
     <Compile Include="Datenmodell\LebensmittelKategorie.cs" />
     <Compile Include="Extensions\ImportLebensmittel.cs" />
     <Compile Include="Migrations\20170712155111_M0.cs" />
@@ -343,6 +344,7 @@
     <Resource Include="Icons\LAdd.png" />
     <Resource Include="Icons\LEdit.png" />
     <Resource Include="Icons\LLook.png" />
+    <Resource Include="Icons\Rastergrafik.png" />
     <Content Include="Ressourcen\Lebensmitteltabelle.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

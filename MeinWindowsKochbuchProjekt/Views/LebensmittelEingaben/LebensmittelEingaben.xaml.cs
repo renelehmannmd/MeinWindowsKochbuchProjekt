@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MeinWindowsKochbuchProjekt.ViewModels.LebensmittelEingaben;
+
 namespace MeinWindowsKochbuchProjekt.Views.LebensmittelEingaben
 {
     /// <summary>
@@ -23,6 +25,21 @@ namespace MeinWindowsKochbuchProjekt.Views.LebensmittelEingaben
         public LebensmittelEingaben()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var myData = pagenamen.DataContext as LebensmittelEingabenVM;
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog()
+            {
+                Filter = "Bilddateien (*.png), | *.png",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+            if(ofd.ShowDialog() == true)
+            {
+                myData.DateiName = ofd.FileName;  
+            }
+
         }
     }
 }

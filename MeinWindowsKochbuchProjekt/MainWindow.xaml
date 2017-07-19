@@ -18,7 +18,7 @@
     </Window.DataContext>
     <Window.Resources>
         <Style x:Key="MyButtons" TargetType="Button">
-            <Setter Property="Background" Value="DarkBlue"></Setter>
+            <Setter Property="Background" Value="Red"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="FontWeight" Value="ExtraBold"></Setter>
@@ -118,7 +118,8 @@
 
             </Grid.Background>
             <StackPanel Orientation="Horizontal" >
-                <Button Click="MenuItem_LebensmittelAnzeigen_Click">
+                <Button Style="{StaticResource MyButtons}" Click="MenuItem_LebensmittelAnzeigen_Click">
+                    
                     <Button.Width>30</Button.Width>
                     <Button.Height>30</Button.Height>
                     <Button.Content>
@@ -144,6 +145,8 @@
                             <Image Source="/Icons\LEdit.png"></Image>
                         </StackPanel>
                     </Button.Content>
+
+                   
                 </Button>
             </StackPanel>
         </Grid>
