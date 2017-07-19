@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.Kategorie">
+    <Position X="3.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACAAgAAAAAAAQAAAAEAAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>Datenmodell\Kategorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.Rezept">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAQAAAAAAAAQAAAIAAQAAAAAAAAQAAAIA=</HashCode>
+      <FileName>Datenmodell\Rezept.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.RezeptKategorie">
+    <Position X="7" Y="1.25" Width="1.5" />
+    <AssociationLine Name="Rezept" Type="MeinWindowsKochbuchProjekt.Datenmodell.Rezept" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="2" />
+        <Point X="10" Y="2" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.506" Y="-0.274" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Kategorie" Type="MeinWindowsKochbuchProjekt.Datenmodell.Kategorie" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="1.938" />
+        <Point X="6.625" Y="1.938" />
+        <Point X="6.625" Y="2.188" />
+        <Point X="5.5" Y="2.188" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.663" Y="-0.315" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAQAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Datenmodell\RezeptKategorie.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rezept" />
+      <Property Name="Kategorie" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.RezeptDataContext">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <AssociationLine Name="Anleitungen" Type="MeinWindowsKochbuchProjekt.Datenmodell.Anleitung" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="6" />
+        <Point X="13.375" Y="6" />
+        <Point X="13.375" Y="3.016" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.171" Y="1.029" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQgAAAAAAAECACAAkAAACAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Datenmodell\RezeptDataContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Anleitungen" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.Anleitung">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAQAAAABAAAAAQAAAAAAAAAAAAQAAAEACAAAAAg=</HashCode>
+      <FileName>Datenmodell\Anleitung.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rezept" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel">
+    <Position X="18.5" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAgEAAAAAAAAAIAAABgGAAAAAIAQAAA=</HashCode>
+      <FileName>Datenmodell\Lebensmittel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.Datenmodell.Naehrwerttabelle">
+    <Position X="14.75" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gQAAgIAEAoAAEAaAABAECAAAAAgAAEAEAAACAAEAAgA=</HashCode>
+      <FileName>Datenmodell\Naehrwerttabelle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Lebensmittel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.ViewModels.EingabenViewModel">
+    <Position X="13.5" Y="7.5" Width="3.25" />
+    <AssociationLine Name="LebensmittelListeVM" Type="MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="8.532" />
+        <Point X="18.938" Y="8.532" />
+        <Point X="18.938" Y="7.286" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.58" Y="0.908" Height="0.182" Width="3.741" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="FirstSelectedItem" Type="MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="10.016" />
+        <Point X="20" Y="10.016" />
+        <Point X="20" Y="7.286" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.96" Y="2.413" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAIABAAAAASgACAAAIAAAACIAgAACCAAAAAAIAQAAAA=</HashCode>
+      <FileName>ViewModels\EingabenViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FirstSelectedItem" />
+      <Property Name="LoescheDatensatz" />
+      <Property Name="BearbeiteDatensatz" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="LebensmittelListeVM" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.MyRelayCommand.RelayCommand">
+    <Position X="7.5" Y="10.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyRelayCommand\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.ViewModels.ViewModelBase">
+    <Position X="13.75" Y="12.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige.LebensmittelAnzeigeVM">
+    <Position X="18.75" Y="11.5" Width="3" />
+    <AssociationLine Name="LebensmittelListe" Type="MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel" FixedToPoint="true">
+      <Path>
+        <Point X="20.812" Y="11.5" />
+        <Point X="20.812" Y="7.286" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.445" Y="3.354" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAACAIAAAgAAAAICAAACAAAAAAAAAgAAAA=</HashCode>
+      <FileName>ViewModels\lebensmittelanzeige\LebensmittelAnzeigeVM.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LebensmittelListe" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

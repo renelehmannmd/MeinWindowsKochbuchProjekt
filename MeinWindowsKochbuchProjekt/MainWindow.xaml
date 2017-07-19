@@ -1,0 +1,154 @@
+﻿<Window x:Class="MeinWindowsKochbuchProjekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:MeinWindowsKochbuchProjekt.ViewModels"
+        xmlns:local="clr-namespace:MeinWindowsKochbuchProjekt.ViewModels"
+        xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon;assembly=System.Windows.Controls.Ribbon"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1400"
+        WindowStyle="none"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        x:Name="mainWindow"
+        Background="DarkBlue">
+    <Window.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="MyButtons" TargetType="Button">
+            <Setter Property="Background" Value="DarkBlue"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontWeight" Value="ExtraBold"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{Binding ElementName=Window, Path=Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="DarkBlue"></Setter>
+                    <Setter Property="Foreground" Value="Red"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="Red"></Setter>
+                    <Setter Property="Foreground" Value="DarkBlue"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Height="25" Background="DarkBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>50</ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>*</ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>50</ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>50</ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>50</ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>50</ColumnDefinition.Width>
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button  Style="{StaticResource MyButtons}">
+                <Button.Content>?</Button.Content>
+                <Button.Width>20</Button.Width>
+                <Button.Height>20</Button.Height>
+                <Grid.Column>2</Grid.Column>
+            </Button>
+
+            <!--Minimieren Button-->
+            <Button Style="{StaticResource MyButtons}" Command="{Binding MinimierenCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                <Button.Content>▼</Button.Content>
+                <Button.Width>20</Button.Width>
+                <Button.Height>20</Button.Height>
+                <Grid.Column>3</Grid.Column>
+            </Button>
+
+            <!--Maximieren Button-->
+            <Button Style="{StaticResource MyButtons}" Command="{Binding MaximierenCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                <Button.Content>▲</Button.Content>
+                <Button.Width>20</Button.Width>
+                <Button.Height>20</Button.Height>
+                <Grid.Column>4</Grid.Column>
+            </Button>
+
+            <!--Close Button-->
+            <Button
+                Style="{StaticResource MyButtons}"
+                Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=mainWindow}">
+                <Button.Background>DarkBlue</Button.Background>
+
+                <Button.BorderThickness>0</Button.BorderThickness>
+                <Button.Content>X</Button.Content>
+                <Button.Width>20</Button.Width>
+                <Button.Height>20</Button.Height>
+                <Grid.Column>5</Grid.Column>
+            </Button>
+        </Grid>
+        <Menu Background="DarkBlue" DockPanel.Dock="Top" Height="20">
+            <MenuItem Header="Lebensmittel" Foreground="White">
+
+                <MenuItem Foreground="Black" Header="Lebensmittel bearbeiten" Click="MenuItem_LebensmittelBearbeiten_Click"></MenuItem>
+                <MenuItem Foreground="Black" Header="Lebensmittel anzeigen"  Click="MenuItem_LebensmittelAnzeigen_Click"></MenuItem>
+                <MenuItem Foreground="Black" Header="Lebensmittel eingeben" Click="MenuItem_LebensmittelBearbeiten_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Height="30" DockPanel.Dock="Top">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="DarkBlue" Offset="0"></GradientStop>
+                    <GradientStop Color="CornflowerBlue" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal" >
+                <Button Click="MenuItem_LebensmittelAnzeigen_Click">
+                    <Button.Width>30</Button.Width>
+                    <Button.Height>30</Button.Height>
+                    <Button.Content>
+                        <StackPanel>
+                            <Image Source="/Icons\LLook.png"></Image>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Click="MenuItem_LebensmittelHinzufuegen_Click">
+                    <Button.Width>30</Button.Width>
+                    <Button.Height>30</Button.Height>
+                    <Button.Content>
+                        <StackPanel>
+                            <Image Source="/Icons\LAdd.png"></Image>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Click="MenuItem_LebensmittelBearbeiten_Click">
+                    <Button.Width>30</Button.Width>
+                    <Button.Height>30</Button.Height>
+                    <Button.Content>
+                        <StackPanel>
+                            <Image Source="/Icons\LEdit.png"></Image>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden">
+            <Frame.Source>\Views\lebensmittelanzeige\lebensmittelanzeige.xaml</Frame.Source>
+        </Frame>
+    </DockPanel>
+</Window>
