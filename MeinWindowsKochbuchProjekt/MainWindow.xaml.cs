@@ -24,7 +24,7 @@ namespace MeinWindowsKochbuchProjekt
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : RibbonWindow
     {
         public MainWindow()
         {
@@ -62,6 +62,11 @@ namespace MeinWindowsKochbuchProjekt
         private void MenuItem_LebensmittelHinzufuegen_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.NavigationService.Navigate(new Uri("Views\\LebensmittelEingaben\\LebensmittelEingaben.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Ribbon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

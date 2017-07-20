@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MeinWindowsKochbuchProjekt.Datenmodell
 {
-    class RezeptDataContext : DbContext
+    class RezeptDataContext : DbContext 
     {
         public DbSet<Rezept> Rezepte { get; set; }
         public DbSet<Kategorie> Kategorien { get; set; }
