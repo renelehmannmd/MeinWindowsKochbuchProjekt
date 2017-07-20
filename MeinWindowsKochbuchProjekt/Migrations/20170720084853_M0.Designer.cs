@@ -8,7 +8,7 @@ using MeinWindowsKochbuchProjekt.Datenmodell;
 namespace MeinWindowsKochbuchProjekt.Migrations
 {
     [DbContext(typeof(RezeptDataContext))]
-    [Migration("20170712155111_M0")]
+    [Migration("20170720084853_M0")]
     partial class M0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,20 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                     b.ToTable("tb_anleitung");
                 });
 
+            modelBuilder.Entity("MeinWindowsKochbuchProjekt.Datenmodell.Bild", b =>
+                {
+                    b.Property<int>("BildID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("bild_id");
+
+                    b.Property<byte[]>("Bildchen")
+                        .HasColumnName("bild_blob");
+
+                    b.HasKey("BildID");
+
+                    b.ToTable("tb_bilder");
+                });
+
             modelBuilder.Entity("MeinWindowsKochbuchProjekt.Datenmodell.Kategorie", b =>
                 {
                     b.Property<int>("KategorieID")
@@ -65,6 +79,9 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lm_id");
 
+                    b.Property<int>("BildId")
+                        .HasColumnName("bild_id");
+
                     b.Property<string>("LebensmittelBeschreibung")
                         .HasColumnName("lm_beschreibung");
 
@@ -79,6 +96,8 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                         .HasColumnName("lm_name");
 
                     b.HasKey("LebensmittelId");
+
+                    b.HasIndex("BildId");
 
                     b.HasIndex("LebensmittelKatId");
 
@@ -187,6 +206,11 @@ namespace MeinWindowsKochbuchProjekt.Migrations
 
             modelBuilder.Entity("MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel", b =>
                 {
+                    b.HasOne("MeinWindowsKochbuchProjekt.Datenmodell.Bild", "Bild")
+                        .WithMany()
+                        .HasForeignKey("BildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("MeinWindowsKochbuchProjekt.Datenmodell.LebensmittelKategorie", "LebensmittelKategorie")
                         .WithMany()
                         .HasForeignKey("LebensmittelKatId")

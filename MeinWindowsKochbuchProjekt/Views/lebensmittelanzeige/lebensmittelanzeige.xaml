@@ -7,6 +7,7 @@
       xmlns:dm="clr-namespace:MeinWindowsKochbuchProjekt.Datenmodell"
       xmlns:vm="clr-namespace:MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige"
       xmlns:converter="clr-namespace:MeinWindowsKochbuchProjekt.Converter"
+      xmlns:converter2="clr-namespace:MeinWindowsKochbuchProjekt.Converter"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1100"
       Title="lebensmittelanzeige"
@@ -20,8 +21,9 @@
                 <ResourceDictionary Source="/Ressourcen/Dictionary1.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <converter:BrushValueConverter x:Key="BrushValueConverter"></converter:BrushValueConverter>
+            <converter2:NullToBoolConverter x:Key="NullToBoolConverter"></converter2:NullToBoolConverter>
         </ResourceDictionary>
-        
+
     </Page.Resources>
     <Grid Background="{StaticResource PageColor }">
         <Grid.RowDefinitions>
@@ -43,7 +45,7 @@
         <TextBox Style="{StaticResource TextBoxen}" 
                  Height="22"
                  TextWrapping="Wrap" 
-                 Text="{Binding SuchWort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding SuchWort, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=500}" 
 
                  Width="200" 
                  Margin="10"
@@ -61,33 +63,48 @@
 
         <FlowDocumentScrollViewer Grid.Row="3"  Grid.Column="1" Background="WhiteSmoke" Foreground="{Binding ElementName=myListBox, Path=SelectedItem, Converter={StaticResource BrushValueConverter}}" Margin="10" BorderBrush="DarkBlue" BorderThickness="1">
             <FlowDocument Background="{StaticResource WindowBackgroundBrush}" >
-                
-                <Paragraph>
-                    <Bold>
-                        <Run FontSize="20" Text="{Binding FirstSelectedItem.LebensmittelName}"></Run>
-                    </Bold>
-                </Paragraph>
+                <Table>
+                    <Table.Columns>
+                        <TableColumn Width="2*"></TableColumn>
+                        <TableColumn Width="1*"></TableColumn>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    <Bold>
+                                        <Run FontSize="20" Text="{Binding FirstSelectedItem.LebensmittelName}"></Run>
+                                    </Bold>
+                                    <LineBreak/>
+                                    <LineBreak/>
+                                    <Run FontWeight="Bold" Text="Kategorie"></Run>
+                                    <LineBreak/>
+                                    <Run Text="{Binding FirstSelectedItem.LebensmittelKategorie.LeKaName}"></Run>
+                                    <LineBreak/>
+                                    <LineBreak/>
+                                    <Run FontWeight="Bold" Text="Beschreibung"></Run>
+                                    <LineBreak/>
+                                    <Run Text="{Binding FirstSelectedItem.LebensmittelBeschreibung}" ></Run>
+                                    <LineBreak/>
+                                    <LineBreak/>
+                                    <Run FontWeight="Bold" Text="Erweiterte Informationen:"></Run>
+                                    <LineBreak/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding FirstSelectedItem.LebensmittelInformationen}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <InlineUIContainer>
+                                        <Image Source="{Binding MyImage}"
+                                               Visibility="{Binding ElementName=myListBox, Path=SelectedItem, Converter={StaticResource NullToBoolConverter}}"/>
+                                    </InlineUIContainer>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
 
-                <Paragraph>
-                    <Run FontWeight="Bold" Text="Kategorie"></Run>
-                </Paragraph>
-                <Paragraph Margin="50,0">
-                    <Run Text="{Binding FirstSelectedItem.LebensmittelKategorie.LeKaName}"></Run>
-                </Paragraph>
-
-                <Paragraph>
-                    <Run FontWeight="Bold" Text="Beschreibung"></Run>
-                </Paragraph>
-                <Paragraph Margin="50,0">
-                    <Run Text="{Binding FirstSelectedItem.LebensmittelBeschreibung}"></Run>
-                </Paragraph>
-
-                <Paragraph>
-                    <Run FontWeight="Bold" Text="Erweiterte Informationen:"></Run>
-                </Paragraph>
-                <Paragraph Margin="50,0">
-                    <Run Text="{Binding FirstSelectedItem.LebensmittelInformationen}"></Run>
-                </Paragraph>
 
                 <Paragraph KeepTogether="True">
                     <Bold>
@@ -115,9 +132,9 @@
                     <LineBreak></LineBreak>
                     <LineBreak></LineBreak>
                     <Bold>
-                    <Run Text="Brennwert: "></Run>
-                    <Run Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBrennwert}"></Run>
-                    <LineBreak></LineBreak>
+                        <Run Text="Brennwert: "></Run>
+                        <Run Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBrennwert}"></Run>
+                        <LineBreak></LineBreak>
                     </Bold>
 
                 </Paragraph>

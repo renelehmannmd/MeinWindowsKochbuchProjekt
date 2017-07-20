@@ -29,13 +29,16 @@ namespace MeinWindowsKochbuchProjekt
         public MainWindow()
         {
             InitializeComponent();
-            var db = new RezeptDataContext();
-            db.Database.Migrate();
-            if (db.Lebensmittels.ToList().Count == 0)
+            using (var db = new RezeptDataContext())
             {
-                ImportLebensmittel.LegeLebensmittelKategorienAn();
-                ImportLebensmittel.ImportiereLebensmittel();
-                ImportLebensmittel.LegeRezeptKategorienAn();
+                db.Database.Migrate();
+                if (db.Lebensmittels.ToList().Count == 0)
+                {
+                    ImportLebensmittel.LegeStandardLebensmittelBildFest();
+                    ImportLebensmittel.LegeLebensmittelKategorienAn();
+                    ImportLebensmittel.ImportiereLebensmittel();
+                    ImportLebensmittel.LegeRezeptKategorienAn();
+                }
             }
 
             

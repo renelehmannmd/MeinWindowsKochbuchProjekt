@@ -9,6 +9,19 @@ namespace MeinWindowsKochbuchProjekt.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "tb_bilder",
+                columns: table => new
+                {
+                    bild_id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    bild_blob = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb_bilder", x => x.bild_id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tb_kategorie",
                 columns: table => new
                 {
@@ -56,6 +69,7 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                 {
                     lm_id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    bild_id = table.Column<int>(nullable: false),
                     lm_beschreibung = table.Column<string>(nullable: true),
                     lm_informationen = table.Column<string>(nullable: true),
                     leka_id = table.Column<int>(nullable: false),
@@ -64,6 +78,12 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_lebensmittel", x => x.lm_id);
+                    table.ForeignKey(
+                        name: "FK_tb_lebensmittel_tb_bilder_bild_id",
+                        column: x => x.bild_id,
+                        principalTable: "tb_bilder",
+                        principalColumn: "bild_id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_tb_lebensmittel_tb_lebensmittel_kats_leka_id",
                         column: x => x.leka_id,
@@ -150,6 +170,11 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                 column: "fk_rez_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_tb_lebensmittel_bild_id",
+                table: "tb_lebensmittel",
+                column: "bild_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tb_lebensmittel_leka_id",
                 table: "tb_lebensmittel",
                 column: "leka_id");
@@ -185,6 +210,9 @@ namespace MeinWindowsKochbuchProjekt.Migrations
 
             migrationBuilder.DropTable(
                 name: "tb_rezept");
+
+            migrationBuilder.DropTable(
+                name: "tb_bilder");
 
             migrationBuilder.DropTable(
                 name: "tb_lebensmittel_kats");

@@ -18,10 +18,6 @@ namespace MeinWindowsKochbuchProjekt.Datenmodell
         [Column("bild_blob", Order = 3)]
         public byte[] Bildchen { get; set; }
 
-        [Column("lm_id", Order = 2), ForeignKey("Lebensmittel")]
-        public int LebensmittelId { get; set; }
-
-        public Lebensmittel Lebensmittel { get; set; }
 
     }
 }

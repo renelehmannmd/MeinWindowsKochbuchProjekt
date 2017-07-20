@@ -32,8 +32,12 @@ namespace MeinWindowsKochbuchProjekt.Datenmodell
         [Column("leka_id"), ForeignKey("LebensmittelKategorie")]
         public int LebensmittelKatId { get; set; }
 
+        [Column("bild_id"), ForeignKey("Bild")]
+        public int BildId { get; set; }
+
         public Naehrwerttabelle Naehrwerttabelle { get; set; }
         public LebensmittelKategorie LebensmittelKategorie { get; set; }
+        public Bild Bild { get; set; }
 
 
     }

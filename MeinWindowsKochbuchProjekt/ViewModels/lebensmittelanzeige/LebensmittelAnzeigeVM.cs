@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,11 +12,25 @@ using System.Windows.Input;
 
 using MeinWindowsKochbuchProjekt.ViewModels;
 using MeinWindowsKochbuchProjekt.Datenmodell;
+using System.Windows.Media;
+using System.IO;
 
 namespace MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige
 {
     public class LebensmittelAnzeigeVM : ViewModelBase
     {
+        private ImageSource myImage;
+        public ImageSource MyImage
+        {
+            get => myImage;
+            set
+            {
+                myImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private ObservableCollection<Lebensmittel> lebensmittelListe;
         public ObservableCollection<Lebensmittel> LebensmittelListe
         {
@@ -47,6 +62,8 @@ namespace MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige
             {
                 firstSelectedItem = value;
                 OnPropertyChanged();
+                if(value != null)
+                    AktualisiereDasBild();
             }
         }
 
@@ -71,12 +88,23 @@ namespace MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige
                     .Where(k => k.LebensmittelName.ToLower().Contains(searchstring.ToLower()))
                     .Include(nw => nw.Naehrwerttabelle)
                     .Include(k => k.LebensmittelKategorie)
+                    .Include(b => b.Bild)
                     .OrderBy(l => l.LebensmittelName)
                     .ToList();
                     
             }
             
         }
+
+        private void AktualisiereDasBild()
+        {
+            using (var stream = new MemoryStream(FirstSelectedItem.Bild.Bildchen))
+            {
+                MyImage = BitmapFrame.Create(
+                    stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            }
+        }
         
     }
+    
 }

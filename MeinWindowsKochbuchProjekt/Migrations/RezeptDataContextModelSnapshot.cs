@@ -48,12 +48,7 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                     b.Property<byte[]>("Bildchen")
                         .HasColumnName("bild_blob");
 
-                    b.Property<int>("LebensmittelId")
-                        .HasColumnName("lm_id");
-
                     b.HasKey("BildID");
-
-                    b.HasIndex("LebensmittelId");
 
                     b.ToTable("tb_bilder");
                 });
@@ -83,6 +78,9 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("lm_id");
 
+                    b.Property<int>("BildId")
+                        .HasColumnName("bild_id");
+
                     b.Property<string>("LebensmittelBeschreibung")
                         .HasColumnName("lm_beschreibung");
 
@@ -97,6 +95,8 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                         .HasColumnName("lm_name");
 
                     b.HasKey("LebensmittelId");
+
+                    b.HasIndex("BildId");
 
                     b.HasIndex("LebensmittelKatId");
 
@@ -203,16 +203,13 @@ namespace MeinWindowsKochbuchProjekt.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("MeinWindowsKochbuchProjekt.Datenmodell.Bild", b =>
-                {
-                    b.HasOne("MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel", "Lebensmittel")
-                        .WithMany()
-                        .HasForeignKey("LebensmittelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("MeinWindowsKochbuchProjekt.Datenmodell.Lebensmittel", b =>
                 {
+                    b.HasOne("MeinWindowsKochbuchProjekt.Datenmodell.Bild", "Bild")
+                        .WithMany()
+                        .HasForeignKey("BildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("MeinWindowsKochbuchProjekt.Datenmodell.LebensmittelKategorie", "LebensmittelKategorie")
                         .WithMany()
                         .HasForeignKey("LebensmittelKatId")

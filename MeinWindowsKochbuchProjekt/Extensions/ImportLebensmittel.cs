@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using MeinWindowsKochbuchProjekt.Datenmodell;
 
 using System.IO;
+using System.Windows.Media.Imaging;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MeinWindowsKochbuchProjekt.Extensions
 {
@@ -59,6 +62,7 @@ namespace MeinWindowsKochbuchProjekt.Extensions
                     }
                     lm.Naehrwerttabelle = nt;
                     lm.LebensmittelKatId = 1;
+                    lm.BildId = 1;
                     rzp.Add<Lebensmittel>(lm);
                 }
 
@@ -121,5 +125,21 @@ namespace MeinWindowsKochbuchProjekt.Extensions
                 db.SaveChanges();
             }
         }
+
+        public static void LegeStandardLebensmittelBildFest()
+        {
+            using (var db = new RezeptDataContext())
+            {
+                string path = "Ressourcen\\fruit-1181730_1280.jpg";
+                FileInfo fi = new FileInfo(path);
+                FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                Bild bi = new Bild();
+                bi.Bildchen = br.ReadBytes((int) fi.Length);
+                db.Bilder.Add(bi);
+                db.SaveChanges();
+            }
+        }
     }
+
 }
