@@ -119,7 +119,8 @@
             </Grid.Background>
             <StackPanel Orientation="Horizontal" >
                 <Button Style="{StaticResource MyButtons}" Click="MenuItem_LebensmittelAnzeigen_Click">
-
+                    <Button.BorderThickness>1</Button.BorderThickness>
+                    <Button.BorderBrush>White</Button.BorderBrush>
                     <Button.Width>30</Button.Width>
                     <Button.Height>30</Button.Height>
                     <Button.Content>

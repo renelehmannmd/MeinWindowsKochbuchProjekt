@@ -32,7 +32,7 @@ namespace MeinWindowsKochbuchProjekt.Views.LebensmittelEingaben
             var myData = pagenamen.DataContext as LebensmittelEingabenVM;
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog()
             {
-                Filter = "Bilddateien (*.png), | *.png",
+                Filter = "Bilddateien (*.png) | *.png | Bilddateien | *.jpg",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
             };
             if(ofd.ShowDialog() == true)

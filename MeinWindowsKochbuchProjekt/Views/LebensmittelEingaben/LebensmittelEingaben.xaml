@@ -38,37 +38,54 @@
             <ColumnDefinition Width="187*"/>
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
-        <Label 
+        <GroupBox FontSize="20" Foreground="{StaticResource WindowBackgroundBrush}" Header="Allgemeine Angaben" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="3" Margin="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24*"></RowDefinition>
+                    <RowDefinition Height="36*"></RowDefinition>
+                    <RowDefinition Height="27*"></RowDefinition>
+                    <RowDefinition Height="91*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label
+            FontSize="12"
             VerticalAlignment="Top"
-            Grid.Row="1" Grid.Column="0" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" HorizontalContentAlignment="Right" Margin="19,0">Lebensmittelname:</Label>
-        <TextBox 
+            Grid.Row="0" Grid.Column="0" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" Margin="19,0" Grid.RowSpan="2">Lebensmittelname:</Label>
+                <TextBox 
             VerticalAlignment="Top"
-            Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxen}" Height="30" Margin="21,0"/>
+            Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBoxen}" Height="30" Margin="20,0"/>
 
-        <Label 
+                <Label 
+                        FontSize="12"
             VerticalAlignment="Top"
-            Grid.Row="2" Grid.Column="0" Foreground="{StaticResource WindowBackgroundBrush}"   Height="30" HorizontalContentAlignment="Right" Margin="19,0">Kategorie:</Label>
-        <ComboBox 
+            Grid.Row="0" Grid.Column="1" Foreground="{StaticResource WindowBackgroundBrush}"   Height="30" Margin="19,0" Grid.RowSpan="2">Kategorie:</Label>
+                <ComboBox 
             VerticalAlignment="Top"
-            Grid.Row="2" Grid.Column="1" Height="30" Margin="21,0"/>
+            Grid.Row="1" Grid.Column="1" Height="30" Margin="21,0" Grid.RowSpan="2"/>
 
 
-        <Label 
+                <Label 
+                        FontSize="12"
             Content="Beschreibung:"
             VerticalAlignment="Top"
-            Grid.Row="1" Grid.Column="2" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" HorizontalContentAlignment="Right" Margin="20,0"/>
-        <TextBox 
+            Grid.Row="2" Grid.Column="0" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" Margin="20,0" Grid.RowSpan="2"/>
+                <TextBox 
             VerticalAlignment="Top"
-            Grid.Row="1" Grid.Column="3" Style="{StaticResource TextBoxen}" Height="90" Margin="20,0"/>
+            Grid.Row="3" Grid.Column="0" Style="{StaticResource TextBoxen}" Height="80" Margin="20,0"/>
 
-        <Label 
+                <Label 
+                        FontSize="12"
             Content="zus. Informationen:"
             VerticalAlignment="Top"
-            Grid.Row="2" Grid.Column="2" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" HorizontalContentAlignment="Right" Margin="20,0"/>
-        <TextBox 
+            Grid.Row="3" Grid.Column="1" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" HorizontalContentAlignment="Right" Margin="20,0"/>
+                <TextBox 
             VerticalAlignment="Top"
-            Grid.Row="2" Grid.Column="3" Style="{StaticResource TextBoxen}" Height="90" Margin="20,0"/>
-
+            Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxen}" Height="80" Margin="20,0" TextWrapping=""/>
+            </Grid>
+        </GroupBox>
         <GroupBox Grid.Row="4" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" Header="Naehrstofftabelle" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -201,7 +218,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.Row="1" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="20" Header="Photo" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
+        <GroupBox BorderThickness="1" Grid.Row="1" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="20,20,20,10" Header="Photo" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -214,7 +231,7 @@
                         x:Name="tb"
                         Text="{Binding DateiName}"
                         Height="30" Width="200" Style="{StaticResource TextBoxen}"></TextBox>
-                   <Button 
+                    <Button 
                        HorizontalAlignment="Right"
                         Style="{StaticResource MyButtons}"
                         Content="Datei"
@@ -222,10 +239,12 @@
                         Height="30"
                         Width="80"
                         Margin="10,0,0,0" Click="Button_Click">
-                       
-                   </Button>
 
-                </StackPanel> 
+                    </Button>
+
+
+                </StackPanel>
+                <Image Grid.Row="1" Source="{Binding ElementName=tb, Path=Text}"></Image>
             </Grid>
         </GroupBox>
     </Grid>
