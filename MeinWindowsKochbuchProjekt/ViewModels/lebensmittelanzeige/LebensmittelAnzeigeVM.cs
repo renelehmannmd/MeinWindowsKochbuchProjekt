@@ -42,6 +42,17 @@ namespace MeinWindowsKochbuchProjekt.ViewModels.lebensmittelanzeige
             }
         }
 
+        //private ObservableCollection<Lebensmittel> lebensmittelListe;
+        //public ObservableCollection<Lebensmittel> LebensmittelListe
+        //{
+        //    get => lebensmittelListe;
+        //    set
+        //    {
+        //        lebensmittelListe = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         private string suchWort;
         public string SuchWort
         {

@@ -15,30 +15,27 @@
                 <ResourceDictionary Source="/Ressourcen\Dictionary1.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
     </Page.Resources>
     <Page.DataContext>
         <vm:LebensmittelEingabenVM/>
     </Page.DataContext>
     <Grid Background="{StaticResource PageColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="55*"/>
-            <RowDefinition Height="55*"/>
-            <RowDefinition Height="16*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+          <RowDefinition Height="20"/>
+             <!-- <RowDefinition Height="39*"/>
             <RowDefinition Height="55*"/>
             <RowDefinition Height="32*"/>
-            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>-->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="162*"/>
-            <ColumnDefinition Width="238*"/>
-            <ColumnDefinition Width="144*"/>
-            <ColumnDefinition Width="269*"/>
-            <ColumnDefinition Width="187*"/>
-            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox FontSize="20" Foreground="{StaticResource WindowBackgroundBrush}" Header="Allgemeine Angaben" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="3" Margin="20">
+        <GroupBox FontSize="20" Foreground="{StaticResource WindowBackgroundBrush}" Header="Allgemeine Angaben" Grid.Row="1" Grid.Column="0" Margin="20, 5">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -63,6 +60,10 @@
             VerticalAlignment="Top"
             Grid.Row="0" Grid.Column="1" Foreground="{StaticResource WindowBackgroundBrush}"   Height="30" Margin="19,0" Grid.RowSpan="2">Kategorie:</Label>
                 <ComboBox 
+                    ItemsSource="{Binding KategorieListeVM}"
+                    DisplayMemberPath="LeKaName"
+                    FontSize="12"
+                    Foreground="Black"
             VerticalAlignment="Top"
             Grid.Row="1" Grid.Column="1" Height="30" Margin="21,0" Grid.RowSpan="2"/>
 
@@ -72,21 +73,32 @@
             Content="Beschreibung:"
             VerticalAlignment="Top"
             Grid.Row="2" Grid.Column="0" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" Margin="20,0" Grid.RowSpan="2"/>
-                <TextBox 
-            VerticalAlignment="Top"
-            Grid.Row="3" Grid.Column="0" Style="{StaticResource TextBoxen}" Height="80" Margin="20,0"/>
+                <TextBox
+                    VerticalContentAlignment="Top"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top"
+                    Grid.Row="3" Grid.Column="0" 
+                    Style="{StaticResource TextBoxen}" 
+                    Height="80" 
+                    Margin="20,0">
+                </TextBox>
 
                 <Label 
-                        FontSize="12"
-            Content="zus. Informationen:"
-            VerticalAlignment="Top"
-            Grid.Row="3" Grid.Column="1" Foreground="{StaticResource WindowBackgroundBrush}"  Height="30" HorizontalContentAlignment="Right" Margin="20,0"/>
-                <TextBox 
-            VerticalAlignment="Top"
-            Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxen}" Height="80" Margin="20,0" TextWrapping=""/>
+                    FontSize="12"
+                    Content="zus. Informationen:"
+                    VerticalAlignment="Top"
+                    Grid.Row="2" Grid.Column="1" 
+                    Foreground="{StaticResource WindowBackgroundBrush}"  
+                    Height="30" 
+                    
+                    Margin="20,0"/>
+                <TextBox
+                    VerticalContentAlignment="Top"
+                    VerticalAlignment="Top"
+                    Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxen}" Height="80" Margin="20,0" TextWrapping="Wrap"/>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="4" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" Header="Naehrstofftabelle" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
+        <GroupBox Grid.Row="2" Grid.Column="0"  Margin="20, 5" Header="Naehrstofftabelle" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100*"></ColumnDefinition>
@@ -218,7 +230,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox BorderThickness="1" Grid.Row="1" Grid.RowSpan="6" Grid.Column="4" Grid.ColumnSpan="2" Margin="20,20,20,10" Header="Photo" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
+        <GroupBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Margin="20,5" Header="Bild" Foreground="{StaticResource WindowBackgroundBrush}" FontSize="20">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -244,7 +256,7 @@
 
 
                 </StackPanel>
-                <Image Grid.Row="1" Source="{Binding ElementName=tb, Path=Text}"></Image>
+                <Image Margin="10" Grid.Row="1" Source="{Binding ElementName=tb, Path=Text}"></Image>
             </Grid>
         </GroupBox>
     </Grid>

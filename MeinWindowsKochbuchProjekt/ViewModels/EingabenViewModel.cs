@@ -10,6 +10,7 @@ using MeinWindowsKochbuchProjekt.MyRelayCommand;
 using System.Windows;
 
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Data;
 
 namespace MeinWindowsKochbuchProjekt.ViewModels
 {
@@ -80,6 +81,16 @@ namespace MeinWindowsKochbuchProjekt.ViewModels
             }
         }
 
+        //private ListCollectionView collection;
+        //public ListCollectionView Collection
+        //{
+        //    get => collection;
+        //    set
+        //    {
+        //        collection = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         /// <summary>
         /// Konstruktor des Viemodels
         /// </summary>
@@ -89,6 +100,7 @@ namespace MeinWindowsKochbuchProjekt.ViewModels
             var lm = db.Lebensmittels
                 .Include(l => l.Naehrwerttabelle)
                 .Include(lk => lk.LebensmittelKategorie)
+                .Include(b => b.Bild)
                 .OrderBy(l=> l.LebensmittelName)
                 .ToList();
  
@@ -98,6 +110,9 @@ namespace MeinWindowsKochbuchProjekt.ViewModels
             LoescheDatensatz = new RelayCommand(ExecuteLoescheDatensatz, CanExecuteLoescheDatensatz);
             BearbeiteDatensatz = new RelayCommand(ExecuteBearbeiteDatensatz, CanExecuteBearbeiteDatensatz);
             SelectedNumber = -1;
+
+            //Collection = new ListCollectionView(LebensmittelListeVM);
+            //Collection.GroupDescriptions.Add(new PropertyGroupDescription("LeKaName"));
         }
 
         #region RelayCommand LoescheDatensatz

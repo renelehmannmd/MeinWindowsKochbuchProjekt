@@ -19,17 +19,54 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{StaticResource PageColor}">
-                    <DataGrid Opacity="50" SelectedItem="{Binding FirstSelectedItem}" AlternatingRowBackground="LightGray" ItemsSource="{Binding LebensmittelListeVM}" AutoGenerateColumns="False" Margin="20,59,0,20" Width="auto" HorizontalAlignment="Left" CanUserResizeColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Name" Width="160" >
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding LebensmittelName}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Beschreibung" Width="160">
+    <Grid Background="{StaticResource PageColor}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="sp1" Width="5*"></ColumnDefinition>
+            <ColumnDefinition x:Name="sp2" Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid
+            x:Name="dg"
+            Width="{Binding ElementName=sp1, Path=Width, UpdateSourceTrigger=PropertyChanged}"
+            Grid.Column="0"
+            Opacity="50" 
+            SelectedItem="{Binding FirstSelectedItem}" 
+            AlternatingRowBackground="LightGray" 
+            ItemsSource="{Binding LebensmittelListeVM}" 
+            AutoGenerateColumns="False" 
+            Margin="20" 
+            HorizontalAlignment="Left" 
+            CanUserResizeColumns="False">
+
+            <DataGrid.RowDetailsTemplate>
+
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="col1" Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock FontWeight="Bold" Padding="10,3" Width="300" Grid.Row="0" Grid.Column="0" Text="Beschreibung:"></TextBlock>
+                        <TextBlock Padding="10,3" Width="300" TextWrapping="Wrap" Grid.Row="1" Grid.Column="0" Text="{Binding LebensmittelBeschreibung}"></TextBlock>
+                        <TextBlock FontWeight="Bold" Padding="10,3" Width="300" Grid.Row="0" Grid.Column="1" Text="zusätzliche Informationen:"></TextBlock>
+                        <TextBlock Padding="10,3" Width="300" TextWrapping="Wrap" Grid.Row="1" Grid.Column="1" Text="{Binding LebensmittelInformationen}"></TextBlock>
+                        <Image Source="{Binding Bild.Bildchen}" MaxHeight="100" MaxWidth="200" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2"></Image>
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Name" Width="2*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LebensmittelName}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn Header="Beschreibung" Width="160">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding LebensmittelBeschreibung}" Height="auto" TextWrapping="Wrap"></TextBlock>
@@ -42,157 +79,209 @@
                                         <TextBlock Text="{Binding LebensmittelInformationen}"></TextBlock>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Kategorie" Width="75">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding LebensmittelKategorie.LeKaName}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Brennwert" Width="70">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertBrennwert}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Eiweiss" Width="70">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehwertEiweiss}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Kohlenhydrate" Width="90">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertKohlenhydrate}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Fett" Width="75">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertFett}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Zucker" Width="75">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertZuckeranteil}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Ballaststoffe" Width="90">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertBallaststoffgeahalt}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Alkohol" Width="70">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertAlkoholgehalt}"></TextBlock>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
+                            </DataGridTemplateColumn>-->
+                <DataGridTemplateColumn Header="Kategorie" Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LebensmittelKategorie.LeKaName}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Brennwert" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertBrennwert}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Eiweiss" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehwertEiweiss}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Kohlenhydrate" Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertKohlenhydrate}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Fett" Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertFett}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Zucker" Width="75">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertZuckeranteil}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Ballaststoffe" Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertBallaststoffgeahalt}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Alkohol" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Naehrwerttabelle.NaehrwertAlkoholgehalt}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
 
-                    </DataGrid>
-                    <Grid HorizontalAlignment="Center" Margin="10,0" Width="1374">
-                        <Button
-                            Style="{StaticResource MyButtons}"
-                    Command="{Binding BearbeiteDatensatz}"
-                    Content="Speichern" HorizontalAlignment="Left" Margin="1271,518,0,0" VerticalAlignment="Top" Width="74"/>
-                        <Button
-                            Style="{StaticResource MyButtons}"
-                            Command="{Binding LoescheDatensatz}"
-                            Content="Loeschen" HorizontalAlignment="Left" Margin="1162,518,0,0" VerticalAlignment="Top" Width="74"/>
-                        <TextBox
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.LebensmittelName}"
-                    HorizontalAlignment="Left" 
-                    Height="24" 
-                    Margin="1145,73,0,0" 
-                    TextWrapping="Wrap" 
-                    VerticalAlignment="Top" 
-                    Width="205"/>
+        </DataGrid>
+        <Grid HorizontalAlignment="Center" Grid.Column="1" Width="{Binding ElementName=sp2, Path=Width, UpdateSourceTrigger=PropertyChanged}">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                            Text="{Binding FirstSelectedItem.LebensmittelBeschreibung}"
-                            HorizontalAlignment="Left" Height="56" Margin="1145,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
+            <Label 
+                Foreground="WhiteSmoke"
+                Content="Name:" VerticalAlignment="Bottom" 
+                Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="1"/>
+            <TextBox
+                Style="{StaticResource TextBoxen}"
+                Text="{Binding FirstSelectedItem.LebensmittelName}"
+                Height="24" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                Width="180"
+                Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="1"/>
 
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehwertEiweiss}"
-                    HorizontalAlignment="Left" Height="23" Margin="1259,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-
-
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBrennwert}"
-                    HorizontalAlignment="Left" Height="23" Margin="1145,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-
-
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.LebensmittelInformationen}"
-                    HorizontalAlignment="Left" Height="56" Margin="1145,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="205"/>
-
-                        <Label Content="Name:" HorizontalAlignment="Left" Margin="1145,47,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="1145,97,0,0" VerticalAlignment="Top"/>
-                        <Label Content="zusätzliche Informationen:" HorizontalAlignment="Left" Margin="1145,179,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Brennwert in kcal:" HorizontalAlignment="Left" Margin="1145,261,0,0" VerticalAlignment="Top"/>
-
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                            Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertKohlenhydrate}"
-                            HorizontalAlignment="Left" 
-                            Height="23" 
-                            Margin="1145,333,0,0" 
-                            TextWrapping="Wrap" 
-                            VerticalAlignment="Top" 
-                            Width="91"/>
-
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertFett}"
-                    HorizontalAlignment="Left" Height="23" Margin="1259,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertZuckeranteil}"
-                    HorizontalAlignment="Left" Height="23" Margin="1145,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertAlkoholgehalt}"
-                    HorizontalAlignment="Left" Height="23" Margin="1259,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-                        <TextBox 
-                            Style="{StaticResource TextBoxen}"
-                    Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBallaststoffgeahalt}"
-                    HorizontalAlignment="Left" Height="23" Margin="1145,431,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-                        <Label Content="Eiweissgehalt:" HorizontalAlignment="Left" Margin="1259,261,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Kohlenhydrate:" HorizontalAlignment="Left" Margin="1145,310,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Fettgehalt:" HorizontalAlignment="Left" Margin="1259,310,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Zuckergehalt:" HorizontalAlignment="Left" Margin="1145,356,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Alkoholgehalt:" HorizontalAlignment="Left" Margin="1259,356,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Ballaststoffe:" HorizontalAlignment="Left" Margin="1145,405,0,0" VerticalAlignment="Top"/>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="1145,474,0,0" VerticalAlignment="Top" Width="205" 
-                              ItemsSource="{Binding ListeLebensmittelKategorien}"
-                              SelectedItem="{Binding SecondSelectedItem,  UpdateSourceTrigger=PropertyChanged}"
-                              SelectedIndex="{Binding SelectedNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-
-
-                              DisplayMemberPath="LeKaName"
-                             
-                              
-                              
-                              />
-                    </Grid>
-                </Grid>
+            <Label
+                Foreground="WhiteSmoke"
+                Content="Kategorie:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="1"/>
+            <ComboBox
                 
+                VerticalAlignment="Top" Width="180" 
+                ItemsSource="{Binding ListeLebensmittelKategorien}"
+                SelectedItem="{Binding SecondSelectedItem,  UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SelectedNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                DisplayMemberPath="LeKaName" Height="24"
+                Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="1"/>
+
+            <Label
+                Foreground="WhiteSmoke"
+                Content="Beschreibung:"  VerticalAlignment="Bottom" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="1" />
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                Text="{Binding FirstSelectedItem.LebensmittelBeschreibung}"
+                TextWrapping="Wrap" VerticalAlignment="Top" Width="180"
+                Height="80"
+                Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
+
+            <Label 
+                Foreground="WhiteSmoke"
+                Content="zusätzliche Informationen:" VerticalAlignment="Bottom" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                Text="{Binding FirstSelectedItem.LebensmittelInformationen}"
+                Height="80" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"
+                Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
+
+
+            <Label
+                Foreground="WhiteSmoke"
+                Content="Brennwert:" VerticalAlignment="Bottom" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"/>
+            <TextBox 
+                HorizontalContentAlignment="Right"
+                Style="{StaticResource TextBoxen}"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBrennwert}"
+                Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="6" Grid.RowSpan="1"/>
+
+            <Label
+                Foreground="WhiteSmoke" Content="Kohlenhydr.:" VerticalAlignment="Bottom"  Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                HorizontalContentAlignment="Right"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertKohlenhydrate}"
+                Height="23" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" 
+                Width="85"
+                Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="6" Grid.RowSpan="1"/>
+
+            <Label Content="Eiweissgehalt:" Foreground="WhiteSmoke" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Column="2" Grid.Row="5" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                HorizontalContentAlignment="Right"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehwertEiweiss}"
+                HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6"/>
+
+            <Label Content="Fettgehalt:" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Grid.Column="3" Grid.Row="5" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                HorizontalContentAlignment="Right"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertFett}"
+                HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="6" Grid.RowSpan="1"/>
+
+            <Label Content="Zuckergehalt:" Foreground="WhiteSmoke" VerticalAlignment="Bottom"  Grid.Column="0" Grid.Row="7" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                HorizontalContentAlignment="Right"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertZuckeranteil}"
+                HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="8" Grid.RowSpan="1"/>
+
+            <Label Foreground="WhiteSmoke" Content="Alkoholgehalt:" VerticalAlignment="Bottom"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="1"/>
+            <TextBox
+                HorizontalContentAlignment="Right"
+                Style="{StaticResource TextBoxen}"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertAlkoholgehalt}"
+                HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="1" Grid.Row="8" Grid.RowSpan="1"/>
+
+            <Label Content="Ballaststoffe:" Foreground="WhiteSmoke" VerticalAlignment="Bottom" Grid.Column="2" Grid.Row="7" Grid.RowSpan="1"/>
+            <TextBox 
+                Style="{StaticResource TextBoxen}"
+                HorizontalContentAlignment="Right"
+                Text="{Binding FirstSelectedItem.Naehrwerttabelle.NaehrwertBallaststoffgeahalt}"
+                HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Top" Width="85"
+                Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="8" Grid.RowSpan="1"/>
+
+            <Button
+                Style="{StaticResource MyButtons}"
+                Command="{Binding BearbeiteDatensatz}"
+                HorizontalAlignment="Center"
+                Content="Speichern"   VerticalAlignment="Top" Width="90"
+                Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="1"/>
+
+            <Button
+                Style="{StaticResource MyButtons}"
+                Command="{Binding LoescheDatensatz}"
+                Content="Loeschen" HorizontalAlignment="Center" VerticalAlignment="Top" Width="90"
+                Grid.Column="2" Grid.Row="9" Grid.RowSpan="1" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
 </Page>

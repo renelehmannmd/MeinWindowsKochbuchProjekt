@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MeinWindowsKochbuchProjekt.Datenmodell
 {
     [Table("tb_rez_kat")]
-    class RezeptKategorie
+    public class RezeptKategorie
     {
         [Column("fk_rez_id", Order = 1)]
         public int RezeptID { get; set; }
